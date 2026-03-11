@@ -1,0 +1,20 @@
+<view class="page verify-page">
+  <view class="progress-track">
+    <view class="progress-fill" style="width: {{progress}}%;"></view>
+  </view>
+
+  <view class="verify-card card">
+    <view class="question-icon">{{currentQuestion.icon}}</view>
+    <view class="question-title">{{currentQuestion.title}}</view>
+    <view class="question-desc">{{currentQuestion.desc}}</view>
+  </view>
+
+  <view class="actions">
+    <button class="answer-button answer-secondary" data-value="false" bindtap="handleAnswer">不太像</button>
+    <button class="answer-button answer-primary" data-value="true" loading="{{loading}}" bindtap="handleAnswer">这就是我</button>
+  </view>
+
+  <view class="verify-footer">
+    还需选择 {{total - currentIndex - 1}} 个，即可锁定命盘
+  </view>
+</view>

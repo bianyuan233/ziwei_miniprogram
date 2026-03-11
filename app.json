@@ -1,0 +1,40 @@
+{
+  "pages": [
+    "pages/welcome/index",
+    "pages/verify/index",
+    "pages/result/index",
+    "pages/home/index",
+    "pages/chart/index",
+    "pages/profile/index",
+    "pages/api-result/index"
+  ],
+  "window": {
+    "navigationBarTitleText": "顺顺念",
+    "navigationBarBackgroundColor": "#F5F3F0",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#F5F3F0",
+    "backgroundTextStyle": "light"
+  },
+  "tabBar": {
+    "color": "#8C8C8C",
+    "selectedColor": "#7D9D9C",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/home/index",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/chart/index",
+        "text": "命盘"
+      },
+      {
+        "pagePath": "pages/profile/index",
+        "text": "我的"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

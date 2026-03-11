@@ -1,0 +1,83 @@
+.chart-card {
+  margin-top: 28rpx;
+}
+
+.chart-grid {
+  margin-top: 12rpx;
+}
+
+.palace {
+  min-height: 124rpx;
+  padding: 14rpx 8rpx;
+  border-radius: 22rpx;
+  background: #faf7f3;
+  border: 2rpx solid #ece9e4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.palace-main {
+  background: linear-gradient(135deg, #7d9d9c, #6a8584);
+  border-color: #7d9d9c;
+}
+
+.palace-name {
+  font-size: 22rpx;
+  color: #8c8c8c;
+}
+
+.palace-star {
+  margin-top: 8rpx;
+  font-size: 26rpx;
+  font-weight: 600;
+  color: #4a4a4a;
+}
+
+.palace-main .palace-name,
+.palace-star-main {
+  color: #ffffff;
+}
+
+.detail-card {
+  margin-top: 24rpx;
+}
+
+.detail-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20rpx;
+  padding: 24rpx 0;
+  border-bottom: 2rpx solid #f0efec;
+}
+
+.detail-row:last-child {
+  border-bottom: none;
+}
+
+.detail-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #4a4a4a;
+}
+
+.detail-summary {
+  margin-top: 10rpx;
+  color: #7d9d9c;
+  line-height: 1.7;
+  font-size: 26rpx;
+}
+
+.detail-mark {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 18rpx;
+  background: #f5f3f0;
+  color: #7d9d9c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+}

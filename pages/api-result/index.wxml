@@ -1,0 +1,42 @@
+<view class="page api-page">
+  <view class="card profile-card" wx:if="{{displayProfile}}">
+    <view class="section-title">本次提交信息</view>
+    <view class="info-row">
+      <text class="info-label">性别</text>
+      <text class="info-value">{{displayProfile.gender}}</text>
+    </view>
+    <view class="info-row">
+      <text class="info-label">出生日期</text>
+      <text class="info-value">{{displayProfile.birthDate}}</text>
+    </view>
+    <view class="info-row">
+      <text class="info-label">出生时辰</text>
+      <text class="info-value">{{displayProfile.timeText}}</text>
+    </view>
+    <view class="info-row">
+      <text class="info-label">职业</text>
+      <text class="info-value">{{displayProfile.profession}}</text>
+    </view>
+  </view>
+
+  <view class="card loading-card" wx:if="{{loading}}">
+    <view class="spinner">
+      <view class="dot dot-1"></view>
+      <view class="dot dot-2"></view>
+      <view class="dot dot-3"></view>
+    </view>
+    <view class="loading-title">接口请求中</view>
+    <view class="loading-subtitle">正在等待后端返回分析文本，请稍候...</view>
+  </view>
+
+  <view class="card result-card" wx:if="{{!loading && resultText}}">
+    <view class="section-title">接口返回内容</view>
+    <view class="result-text">{{resultText}}</view>
+  </view>
+
+  <view class="card error-card" wx:if="{{!loading && error}}">
+    <view class="section-title">请求失败</view>
+    <view class="error-text">{{error}}</view>
+    <button class="button-primary retry-button" bindtap="handleRetry">重新请求</button>
+  </view>
+</view>

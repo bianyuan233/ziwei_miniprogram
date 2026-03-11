@@ -1,0 +1,218 @@
+.home-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 16rpx;
+}
+
+.user-block {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+}
+
+.avatar {
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #7d9d9c, #b8c5bb);
+  color: #ffffff;
+  font-size: 36rpx;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.welcome-text {
+  font-size: 38rpx;
+  font-weight: 700;
+  color: #4a4a4a;
+}
+
+.small-copy {
+  margin-top: 6rpx;
+  font-size: 24rpx;
+}
+
+.notice-dot {
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 50%;
+  background: #ffffff;
+  color: #7d9d9c;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8rpx 24rpx rgba(0, 0, 0, 0.06);
+}
+
+.luck-card {
+  margin-top: 28rpx;
+  background: linear-gradient(135deg, #7d9d9c, #b8c5bb);
+  color: #ffffff;
+}
+
+.luck-label {
+  font-size: 24rpx;
+  opacity: 0.88;
+}
+
+.luck-title {
+  margin-top: 12rpx;
+  font-size: 40rpx;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.luck-summary {
+  margin-top: 16rpx;
+  font-size: 26rpx;
+  line-height: 1.8;
+  opacity: 0.9;
+}
+
+.luck-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12rpx;
+  margin-top: 24rpx;
+}
+
+.light-tag {
+  padding: 8rpx 16rpx;
+  border-radius: 999rpx;
+  background: rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+  font-size: 22rpx;
+}
+
+.service-grid {
+  margin-top: 12rpx;
+}
+
+.service-card {
+  background: #ffffff;
+  border-radius: 28rpx;
+  min-height: 176rpx;
+  padding: 24rpx 12rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10rpx 30rpx rgba(0, 0, 0, 0.05);
+}
+
+.service-icon {
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 24rpx;
+  background: #f5f3f0;
+  color: #7d9d9c;
+  font-size: 30rpx;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.service-title {
+  margin-top: 16rpx;
+  font-size: 26rpx;
+  color: #4a4a4a;
+}
+
+.sheet-title {
+  margin: 0;
+}
+
+.plan-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16rpx;
+  padding: 24rpx;
+  border-radius: 28rpx;
+  border: 2rpx solid #ebe8e2;
+}
+
+.plan-card-active {
+  border-color: #7d9d9c;
+  background: rgba(125, 157, 156, 0.05);
+}
+
+.plan-card-recommended {
+  border-color: #d4a59a;
+  background: rgba(212, 165, 154, 0.06);
+}
+
+.plan-title-row {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+}
+
+.plan-title {
+  font-size: 30rpx;
+  font-weight: 600;
+}
+
+.plan-badge {
+  padding: 4rpx 10rpx;
+  border-radius: 999rpx;
+  background: #d4a59a;
+  color: #ffffff;
+  font-size: 20rpx;
+}
+
+.plan-desc {
+  margin-top: 8rpx;
+  font-size: 24rpx;
+}
+
+.plan-price {
+  color: #7d9d9c;
+  font-size: 34rpx;
+  font-weight: 700;
+}
+
+.content-paragraph {
+  margin-bottom: 18rpx;
+  color: #5a5a5a;
+  line-height: 1.8;
+}
+
+.content-advice {
+  margin: 20rpx 0 28rpx;
+  padding: 24rpx;
+  border-radius: 24rpx;
+  background: #f5f3f0;
+  color: #4a4a4a;
+  line-height: 1.8;
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+}
+
+.advice-label {
+  color: #7d9d9c;
+  font-weight: 700;
+}
+
+.sheet-card {
+  padding-top: 8rpx;
+}
+
+.record-summary {
+  margin-top: 8rpx;
+  width: 420rpx;
+  font-size: 24rpx;
+  line-height: 1.5;
+}
+
+.empty-copy {
+  padding: 24rpx 0;
+  text-align: center;
+  color: #8c8c8c;
+}

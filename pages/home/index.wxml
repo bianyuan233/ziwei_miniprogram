@@ -1,0 +1,83 @@
+<view class="page page-with-tabbar home-page">
+  <view class="home-header">
+    <view class="user-block">
+      <view class="avatar">{{profile.avatarText}}</view>
+      <view>
+        <view class="welcome-text">Hi, {{profile.nickname}}</view>
+        <view class="muted small-copy">命盘已校准 · {{isPaid ? '已解锁深度版' : '基础版'}}</view>
+      </view>
+    </view>
+    <view class="notice-dot">信</view>
+  </view>
+
+  <view class="card luck-card">
+    <view class="luck-label">今日运势</view>
+    <view class="luck-title">{{dailyFortune.heading}}</view>
+    <view class="luck-summary">{{dailyFortune.summary}}</view>
+    <view class="luck-tags">
+      <text wx:for="{{dailyFortune.tags}}" wx:key="*this" class="light-tag">{{item}}</text>
+    </view>
+  </view>
+
+  <view class="section-title">功能服务区</view>
+  <view class="grid-3 service-grid">
+    <view wx:for="{{serviceMenu}}" wx:key="key" class="service-card" data-key="{{item.key}}" bindtap="handleServiceTap">
+      <view class="service-icon">{{item.icon}}</view>
+      <view class="service-title">{{item.title}}</view>
+    </view>
+  </view>
+
+  <view wx:if="{{showSheet}}" class="overlay" bindtap="closeSheet">
+    <view class="sheet" catchtap="noop">
+      <view class="sheet-header">
+        <view class="section-title sheet-title">{{sheetTitle}}</view>
+        <view class="sheet-close" bindtap="closeSheet">×</view>
+      </view>
+
+      <block wx:if="{{sheetMode === 'payment'}}">
+        <view wx:for="{{paymentOptions}}" wx:key="key" class="plan-card {{selectedPlan === item.key ? 'plan-card-active' : ''}} {{item.recommended ? 'plan-card-recommended' : ''}}" data-key="{{item.key}}" bindtap="handleSelectPlan">
+          <view>
+            <view class="plan-title-row">
+              <text class="plan-title">{{item.title}}</text>
+              <text wx:if="{{item.recommended}}" class="plan-badge">推荐</text>
+            </view>
+            <view class="muted plan-desc">{{item.desc}}</view>
+          </view>
+          <view class="plan-price">{{item.price}}</view>
+        </view>
+        <button class="button-primary" bindtap="handlePayConfirm">立即解锁</button>
+      </block>
+
+      <block wx:if="{{sheetMode === 'content' && contentDetail}}">
+        <view wx:for="{{contentDetail.paragraphs}}" wx:key="*this" class="content-paragraph">{{item}}</view>
+        <view class="content-advice">
+          <text class="advice-label">行动建议</text>
+          <text>{{contentDetail.advice}}</text>
+        </view>
+        <button class="button-outline" bindtap="closeSheet">关闭</button>
+      </block>
+
+      <block wx:if="{{sheetMode === 'yearly'}}">
+        <view class="card sheet-card">
+          <view wx:for="{{yearlyRecords}}" wx:key="year" class="list-item">
+            <text>{{item.year}} 年（{{item.label}}）</text>
+            <text class="muted">{{item.status}}</text>
+          </view>
+        </view>
+      </block>
+
+      <block wx:if="{{sheetMode === 'history'}}">
+        <view class="card sheet-card">
+          <view wx:if="{{historyRecords.length === 0}}" class="empty-copy">暂无历史记录</view>
+          <view wx:for="{{historyRecords}}" wx:key="summary" class="list-item">
+            <view>
+              <view>{{item.type}}</view>
+              <view class="muted record-summary">{{item.summary}}</view>
+            </view>
+            <text class="muted">{{item.date}}</text>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>

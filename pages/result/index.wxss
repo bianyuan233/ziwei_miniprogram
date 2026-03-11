@@ -1,0 +1,71 @@
+.title-block {
+  margin-top: 24rpx;
+}
+
+.score-card {
+  margin-top: 28rpx;
+  text-align: center;
+}
+
+.score-space {
+  margin-top: 24rpx;
+}
+
+.score-hint {
+  margin-top: 16rpx;
+  color: #8c8c8c;
+  font-size: 26rpx;
+}
+
+.chart-grid {
+  margin-top: 32rpx;
+}
+
+.palace {
+  min-height: 116rpx;
+  padding: 12rpx 8rpx;
+  border-radius: 20rpx;
+  background: #f8f5f1;
+  border: 2rpx solid #ebe8e2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.palace-main {
+  background: #7d9d9c;
+  border-color: #7d9d9c;
+}
+
+.palace-name {
+  font-size: 22rpx;
+  color: #8c8c8c;
+}
+
+.palace-star {
+  margin-top: 6rpx;
+  font-size: 24rpx;
+  font-weight: 600;
+  color: #4a4a4a;
+}
+
+.palace-main .palace-name,
+.palace-main .palace-star {
+  color: #ffffff;
+}
+
+.rule-copy {
+  margin-top: 8rpx;
+  color: #5a5a5a;
+  font-size: 27rpx;
+  line-height: 1.8;
+}
+
+.result-button {
+  margin-top: 24rpx;
+}
+
+.ghost-button {
+  margin-top: 16rpx;
+}

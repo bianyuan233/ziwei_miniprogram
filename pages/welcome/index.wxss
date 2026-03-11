@@ -1,0 +1,71 @@
+.welcome-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.hero {
+  margin: 120rpx 0 48rpx;
+  text-align: center;
+}
+
+.hero-mark {
+  font-size: 64rpx;
+  font-weight: 700;
+  color: #7d9d9c;
+  letter-spacing: 4rpx;
+}
+
+.hero-subtitle {
+  margin-top: 16rpx;
+  color: #8c8c8c;
+  font-size: 26rpx;
+}
+
+.intro-card {
+  padding-top: 36rpx;
+}
+
+.field-group + .field-group {
+  margin-top: 36rpx;
+}
+
+.picker-field {
+  display: flex;
+  align-items: center;
+  color: #4a4a4a;
+}
+
+.profession-field {
+  line-height: 1.4;
+}
+
+.placeholder {
+  color: #b4b4b4;
+}
+
+.time-display {
+  margin-top: 12rpx;
+  text-align: center;
+  font-size: 34rpx;
+  color: #7d9d9c;
+  font-weight: 600;
+}
+
+.field-tip {
+  margin-top: 12rpx;
+  color: #8c8c8c;
+  font-size: 24rpx;
+  line-height: 1.6;
+}
+
+.start-btn {
+  margin-top: 40rpx;
+}
+
+.footer-tip {
+  margin-top: 32rpx;
+  text-align: center;
+  font-size: 24rpx;
+  color: #8c8c8c;
+}

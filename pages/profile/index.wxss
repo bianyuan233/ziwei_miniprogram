@@ -1,0 +1,75 @@
+.profile-top {
+  margin-top: 24rpx;
+  text-align: center;
+}
+
+.profile-avatar {
+  width: 140rpx;
+  height: 140rpx;
+  margin: 0 auto 24rpx;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #7d9d9c, #6a8584);
+  color: #ffffff;
+  font-size: 56rpx;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-name {
+  font-size: 40rpx;
+  font-weight: 700;
+  color: #4a4a4a;
+}
+
+.member-card {
+  margin-top: 24rpx;
+  padding: 28rpx 32rpx;
+  border-radius: 32rpx;
+  background: linear-gradient(135deg, #d4a59a, #e8c5b9);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.member-title {
+  font-size: 34rpx;
+  font-weight: 700;
+}
+
+.member-expire {
+  margin-top: 10rpx;
+  font-size: 24rpx;
+  opacity: 0.92;
+}
+
+.member-button {
+  min-width: 140rpx;
+  min-height: 68rpx;
+  padding: 0 28rpx;
+  border-radius: 999rpx;
+  background: #ffffff;
+  color: #d4a59a;
+  font-size: 26rpx;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.settings-card {
+  margin-top: 24rpx;
+}
+
+.danger-item {
+  color: #c47565;
+}
+
+.profile-footer {
+  margin-top: 40rpx;
+  text-align: center;
+  font-size: 24rpx;
+  line-height: 1.8;
+}

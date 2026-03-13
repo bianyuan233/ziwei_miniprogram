@@ -45,11 +45,15 @@
 }
 
 .time-display {
-  margin-top: 12rpx;
+  margin: 8rpx 0 14rpx;
   text-align: center;
   font-size: 34rpx;
   color: #7d9d9c;
   font-weight: 600;
+}
+
+.time-slider {
+  margin: 0;
 }
 
 .field-tip {

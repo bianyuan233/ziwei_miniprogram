@@ -25,7 +25,9 @@
 
     <view class="field-group">
       <text class="label">出生时辰（模糊可选）</text>
+      <view class="time-display">{{timeLabel}}</view>
       <slider
+        class="time-slider"
         min="0"
         max="23"
         step="1"
@@ -33,9 +35,9 @@
         activeColor="#7D9D9C"
         backgroundColor="#DCE3DE"
         block-color="#7D9D9C"
+        bindchanging="handleHourChanging"
         bindchange="handleHourChange"
       />
-      <view class="time-display">{{timeLabel}}</view>
       <view class="field-tip">不确定也没关系，稍后可以通过人生事件继续校准。</view>
     </view>
 

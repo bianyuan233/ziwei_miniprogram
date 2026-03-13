@@ -75,12 +75,20 @@ Page({
     });
   },
 
-  handleHourChange(event) {
-    const birthHour = Number(event.detail.value);
+  updateHour(hour) {
+    const birthHour = Number(hour);
     this.setData({
       birthHour,
       timeLabel: format.getTimeLabel(birthHour),
     });
+  },
+
+  handleHourChanging(event) {
+    this.updateHour(event.detail.value);
+  },
+
+  handleHourChange(event) {
+    this.updateHour(event.detail.value);
   },
 
   handleProfessionChange(event) {

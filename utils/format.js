@@ -15,6 +15,24 @@ function getShichenByHour(hour) {
   return "亥时";
 }
 
+function getBackendTimeIndex(hour) {
+  const val = Number(hour);
+
+  if (val === 23) return 0;
+  if (val >= 1 && val < 3) return 1;
+  if (val >= 3 && val < 5) return 2;
+  if (val >= 5 && val < 7) return 3;
+  if (val >= 7 && val < 9) return 4;
+  if (val >= 9 && val < 11) return 5;
+  if (val >= 11 && val < 13) return 6;
+  if (val >= 13 && val < 15) return 7;
+  if (val >= 15 && val < 17) return 8;
+  if (val >= 17 && val < 19) return 9;
+  if (val >= 19 && val < 21) return 10;
+  if (val >= 21 && val < 23) return 11;
+  return 12;
+}
+
 function padHour(hour) {
   return `${String(hour).padStart(2, "0")}:00`;
 }
@@ -33,6 +51,7 @@ function getCurrentDate() {
 
 module.exports = {
   getShichenByHour,
+  getBackendTimeIndex,
   padHour,
   getTimeLabel,
   getCurrentDate,

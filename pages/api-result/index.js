@@ -19,12 +19,14 @@ Page({
     }
 
     const profile = storage.getProfile();
+    const birthHour = Number(profile.birthHour);
+    const backendTimeIndex = format.getBackendTimeIndex(birthHour);
     const requestPayload = {
       birthDate: profile.birthDate,
-      timeIndex: Number(profile.birthHour),
+      timeIndex: backendTimeIndex,
       gender: profile.gender,
       profession: profile.profession,
-      birthHour: Number(profile.birthHour),
+      birthHour,
       birthTimeLabel: profile.shichen,
     };
 
@@ -33,8 +35,9 @@ Page({
       displayProfile: {
         gender: profile.gender,
         birthDate: profile.birthDate,
-        timeText: format.getTimeLabel(profile.birthHour),
+        timeText: format.getTimeLabel(birthHour),
         profession: profile.profession,
+        backendTimeIndex,
       },
     });
 

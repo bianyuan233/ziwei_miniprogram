@@ -4,7 +4,8 @@ const { genSessionId, startAgentStream } = require("../../utils/agentStreamServi
 const { markdownToNodes } = require("../../utils/markdown");
 
 const TYPEWRITER_INTERVAL_MS = 30;
-const TYPEWRITER_BATCH_SIZE = 2;
+const TYPEWRITER_BATCH_SIZE = 3;
+const TYPEWRITER_FRAME_MS = 16;
 
 function createAssistantMessage(content, streaming) {
   return {
@@ -43,6 +44,7 @@ Page({
   _typewriterBuffer: "",
   _typewriterTimer: null,
   _typewriterDonePending: false,
+  _typewriterNextAt: 0,
   _waitingTimer: null,
   _streamStartedAt: 0,
   _latestProgressText: "",
@@ -264,9 +266,7 @@ Page({
 
   ensureTypewriterTimer() {
     if (this._typewriterTimer) return;
-    this._typewriterTimer = setInterval(() => {
-      this.drainTypewriterBuffer();
-    }, TYPEWRITER_INTERVAL_MS);
+    this._typewriterNextAt = Date.now();
     this.drainTypewriterBuffer();
   },
 
@@ -279,10 +279,24 @@ Page({
       return;
     }
 
+    const now = Date.now();
+    if (now < this._typewriterNextAt) {
+      this._typewriterTimer = setTimeout(() => {
+        this._typewriterTimer = null;
+        this.drainTypewriterBuffer();
+      }, Math.min(TYPEWRITER_FRAME_MS, this._typewriterNextAt - now));
+      return;
+    }
+
     const chars = Array.from(this._typewriterBuffer);
     const nextText = chars.slice(0, TYPEWRITER_BATCH_SIZE).join("");
     this._typewriterBuffer = chars.slice(TYPEWRITER_BATCH_SIZE).join("");
     this.appendAssistantText(nextText);
+    this._typewriterNextAt = now + TYPEWRITER_INTERVAL_MS;
+    this._typewriterTimer = setTimeout(() => {
+      this._typewriterTimer = null;
+      this.drainTypewriterBuffer();
+    }, TYPEWRITER_FRAME_MS);
   },
 
   appendAssistantText(text) {
@@ -342,9 +356,10 @@ Page({
 
   clearTypewriterTimer() {
     if (this._typewriterTimer) {
-      clearInterval(this._typewriterTimer);
+      clearTimeout(this._typewriterTimer);
       this._typewriterTimer = null;
     }
+    this._typewriterNextAt = 0;
   },
 
   stopStream() {

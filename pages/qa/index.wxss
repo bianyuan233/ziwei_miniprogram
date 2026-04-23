@@ -83,13 +83,17 @@
 }
 
 .message-bubble {
-  max-width: 82%;
+  max-width: 80%;
+  min-width: 0;
   box-sizing: border-box;
   padding: 22rpx 26rpx;
   border-radius: 20rpx;
   font-size: 28rpx;
   line-height: 1.65;
-  word-break: break-word;
+  overflow: hidden;
+  word-break: break-all;
+  overflow-wrap: anywhere;
+  white-space: normal;
 }
 
 .message.user .message-bubble {
@@ -103,6 +107,68 @@
   color: #3D3D3D;
   border: 1rpx solid #E8E3D8;
   border-bottom-left-radius: 6rpx;
+}
+
+.message-bubble rich-text,
+.message-bubble text {
+  max-width: 100%;
+  min-width: 0;
+  word-break: break-all;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+.md-p,
+.md-heading,
+.md-list,
+.md-list-item,
+.md-quote,
+.md-link,
+.md-inline-code,
+.md-code-block {
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  word-break: break-all;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.md-heading {
+  display: block;
+  font-size: 32rpx;
+  font-weight: 700;
+  line-height: 1.45;
+  margin: 16rpx 0 10rpx;
+}
+
+.md-p {
+  display: block;
+  margin: 8rpx 0;
+}
+
+.md-list {
+  display: block;
+  padding-left: 24rpx;
+}
+
+.md-list-item {
+  display: block;
+  margin: 6rpx 0;
+}
+
+.md-inline-code,
+.md-code-block {
+  display: inline;
+  border-radius: 8rpx;
+  background: #F5F3F0;
+  color: #5F5F5F;
+}
+
+.md-code-block {
+  display: block;
+  padding: 16rpx;
+  margin: 12rpx 0;
 }
 
 .typing-indicator {
@@ -129,7 +195,21 @@
 }
 
 .cursor {
+  display: inline-block;
+  margin-left: 4rpx;
   color: #8B9A8F;
+  animation: cursorBreath 900ms ease-in-out infinite;
+}
+
+@keyframes cursorBreath {
+  0%, 100% {
+    opacity: 0.28;
+    transform: translateY(1rpx);
+  }
+  45% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .stream-status {

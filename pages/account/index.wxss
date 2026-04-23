@@ -1,0 +1,173 @@
+.account-section {
+  padding: 30rpx;
+  margin-bottom: 24rpx;
+}
+
+.account-section-title {
+  color: #3D3D3D;
+  font-size: 30rpx;
+  font-weight: 700;
+  margin-bottom: 18rpx;
+}
+
+.account-info-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 24rpx;
+  padding: 22rpx 0;
+  border-bottom: 1rpx solid #E8E3D8;
+  font-size: 26rpx;
+}
+
+.account-info-item.last {
+  border-bottom: 0;
+}
+
+.account-info-label {
+  color: #888888;
+}
+
+.account-info-value {
+  color: #3D3D3D;
+  font-weight: 600;
+  text-align: right;
+}
+
+.subscription-card {
+  padding: 24rpx;
+  border-radius: 18rpx;
+  background: #F5F3F0;
+}
+
+.subscription-status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20rpx;
+}
+
+.subscription-plan {
+  color: #3D3D3D;
+  font-size: 32rpx;
+  font-weight: 700;
+}
+
+.subscription-badge {
+  padding: 8rpx 14rpx;
+  border-radius: 999rpx;
+  background: rgba(123, 155, 168, 0.16);
+  color: #7B9BA8;
+  font-size: 22rpx;
+}
+
+.subscription-badge.expired {
+  background: rgba(212, 103, 122, 0.14);
+  color: #D4677A;
+}
+
+.subscription-detail {
+  color: #888888;
+  font-size: 24rpx;
+  line-height: 1.5;
+  margin-top: 16rpx;
+}
+
+.upgrade-btn {
+  margin-top: 22rpx;
+}
+
+.empty-record {
+  color: #888888;
+  font-size: 26rpx;
+  text-align: center;
+  padding: 32rpx 0;
+}
+
+.payment-record {
+  padding: 22rpx 0;
+  border-bottom: 1rpx solid #E8E3D8;
+}
+
+.payment-record:last-child {
+  border-bottom: 0;
+}
+
+.payment-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 20rpx;
+}
+
+.payment-plan-name {
+  color: #3D3D3D;
+  font-size: 28rpx;
+  font-weight: 700;
+}
+
+.payment-amount {
+  color: #C4A370;
+  font-size: 28rpx;
+  font-weight: 700;
+}
+
+.payment-date,
+.payment-period {
+  color: #888888;
+  font-size: 23rpx;
+  margin-top: 8rpx;
+}
+
+.account-link {
+  padding: 24rpx 0;
+  border-bottom: 1rpx solid #E8E3D8;
+  color: #3D3D3D;
+  font-size: 27rpx;
+}
+
+.account-link:last-child {
+  border-bottom: 0;
+}
+
+.account-link.danger {
+  color: #D4677A;
+}
+
+.feedback-overlay {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1900;
+  display: flex;
+  align-items: flex-end;
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.feedback-panel {
+  width: 100%;
+  max-height: 86vh;
+  box-sizing: border-box;
+  padding: 38rpx 40rpx calc(38rpx + env(safe-area-inset-bottom));
+  border-radius: 28rpx 28rpx 0 0;
+  background: #FFFFFF;
+}
+
+.feedback-title {
+  color: #3D3D3D;
+  font-size: 34rpx;
+  font-weight: 700;
+  margin-bottom: 28rpx;
+}
+
+.feedback-actions {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 20rpx;
+}
+
+.feedback-actions .btn-primary,
+.feedback-actions .btn-secondary {
+  padding-left: 16rpx;
+  padding-right: 16rpx;
+}

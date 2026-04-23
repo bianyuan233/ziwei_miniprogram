@@ -1,0 +1,94 @@
+<view class="page account-page screen-page">
+  <view class="app-header">
+    <view class="back-btn" hover-class="control-hover" bindtap="goBack">←</view>
+    <view class="header-main">
+      <view class="header-title">账户信息</view>
+      <view class="header-subtitle">本地档案与会员状态</view>
+    </view>
+  </view>
+
+  <view class="account-section card">
+    <view class="account-section-title">📱 基本信息</view>
+    <view class="account-info-item">
+      <text class="account-info-label">手机号码</text>
+      <text class="account-info-value">{{phoneText}}</text>
+    </view>
+    <view class="account-info-item">
+      <text class="account-info-label">性别</text>
+      <text class="account-info-value">{{genderText}}</text>
+    </view>
+    <view class="account-info-item">
+      <text class="account-info-label">注册时间</text>
+      <text class="account-info-value">{{registeredAtText}}</text>
+    </view>
+    <view class="account-info-item last">
+      <text class="account-info-label">命盘档案</text>
+      <text class="account-info-value">{{profileCount}} 个</text>
+    </view>
+  </view>
+
+  <view class="account-section card">
+    <view class="account-section-title">👑 会员信息</view>
+    <view class="subscription-card">
+      <view class="subscription-status">
+        <view class="subscription-plan">{{subscriptionView.planName}}</view>
+        <text class="subscription-badge {{subscriptionView.expired ? 'expired' : ''}}">{{subscriptionView.statusText}}</text>
+      </view>
+      <view class="subscription-detail">{{subscriptionView.detail}}</view>
+      <button class="btn-primary upgrade-btn" hover-class="control-hover" bindtap="goToPricing">立即升级</button>
+    </view>
+  </view>
+
+  <view class="account-section card">
+    <view class="account-section-title">💳 消费记录</view>
+    <view wx:if="{{!hasPaymentRecords}}" class="empty-record">暂无消费记录</view>
+    <view wx:for="{{paymentRecords}}" wx:key="purchaseDate" class="payment-record">
+      <view class="payment-header">
+        <text class="payment-plan-name">{{item.planName}}</text>
+        <text class="payment-amount">{{item.amount}}</text>
+      </view>
+      <view class="payment-date">购买时间：{{item.purchaseDate}}</view>
+      <view class="payment-period">有效期：{{item.expiryDate}}</view>
+    </view>
+  </view>
+
+  <view class="account-section card">
+    <view class="account-section-title">📋 更多</view>
+    <view class="account-link" hover-class="control-hover" bindtap="goToPolicy">📜 用户协议和隐私政策</view>
+    <view class="account-link" hover-class="control-hover" bindtap="showServiceCenter">☎ 联系客服</view>
+    <view class="account-link danger" hover-class="control-hover" bindtap="handleReset">清空本地数据</view>
+  </view>
+
+  <view wx:if="{{showFeedback}}" class="feedback-overlay" catchtap="closeFeedback">
+    <view class="feedback-panel" catchtap="noop">
+      <view class="feedback-title">提交反馈</view>
+      <view class="form-group">
+        <text class="form-label">反馈类型</text>
+        <picker mode="selector" range="{{feedbackTypes}}" value="{{feedbackTypeIndex}}" bindchange="handleFeedbackTypeChange">
+          <view class="form-select">{{feedbackTypeText}}</view>
+        </picker>
+      </view>
+      <view class="form-group">
+        <text class="form-label">反馈内容</text>
+        <textarea class="form-textarea" placeholder="请详细描述你的问题或建议..." value="{{feedbackContent}}" bindinput="handleFeedbackContent" maxlength="500"></textarea>
+      </view>
+      <view class="form-group">
+        <text class="form-label">联系方式（选填）</text>
+        <input class="form-input" placeholder="方便我们跟进反馈" value="{{feedbackContact}}" bindinput="handleFeedbackContact" maxlength="60" />
+      </view>
+      <view class="feedback-actions">
+        <button class="btn-secondary" hover-class="control-hover" bindtap="closeFeedback">取消</button>
+        <button class="btn-primary" hover-class="control-hover" bindtap="submitFeedback">提交</button>
+      </view>
+    </view>
+  </view>
+
+  <app-modal
+    visible="{{modal.visible}}"
+    icon="{{modal.icon}}"
+    title="{{modal.title}}"
+    message="{{modal.message}}"
+    buttons="{{modal.buttons}}"
+    bindaction="onModalAction"
+  />
+</view>

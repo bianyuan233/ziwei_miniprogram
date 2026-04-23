@@ -1,0 +1,45 @@
+<view class="page calibration-page screen-page">
+  <view class="app-header">
+    <view class="back-btn" hover-class="control-hover" bindtap="goBack">←</view>
+    <view class="header-main">
+      <view class="header-title">验证命盘</view>
+      <view class="header-subtitle">通过几道生活化问题，让我了解你</view>
+    </view>
+  </view>
+
+  <view class="progress-bar">
+    <view class="progress-fill" style="width: {{progress}}%;"></view>
+  </view>
+
+  <view wx:if="{{currentQuestion}}" class="question-wrap">
+    <view class="question-number">第 {{currentIndex + 1}}/{{questions.length}} 题</view>
+    <view class="question-text">{{currentQuestion.question}}</view>
+
+    <view class="options-list">
+      <button
+        wx:for="{{currentQuestion.options}}"
+        wx:key="*this"
+        class="btn-option {{selectedOption === index ? 'selected' : ''}}"
+        hover-class="control-hover"
+        data-index="{{index}}"
+        bindtap="selectOption"
+      >{{item}}</button>
+    </view>
+  </view>
+
+  <view class="flex-spacer"></view>
+
+  <view class="button-row">
+    <button class="btn-secondary {{currentIndex === 0 ? 'disabled' : ''}}" hover-class="control-hover" disabled="{{currentIndex === 0}}" bindtap="prevQuestion">上一题</button>
+    <button class="btn-primary" hover-class="control-hover" loading="{{loading}}" bindtap="nextQuestion">{{currentIndex === questions.length - 1 ? '完成' : '下一题'}}</button>
+  </view>
+
+  <app-modal
+    visible="{{modal.visible}}"
+    icon="{{modal.icon}}"
+    title="{{modal.title}}"
+    message="{{modal.message}}"
+    buttons="{{modal.buttons}}"
+    bindaction="onModalAction"
+  />
+</view>

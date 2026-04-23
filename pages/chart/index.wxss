@@ -1,83 +1,176 @@
-.chart-card {
+.state-card {
+  padding: 44rpx 36rpx;
+  text-align: center;
+}
+
+.state-title {
+  color: #8B9A8F;
+  font-size: 34rpx;
+  font-weight: 700;
+}
+
+.state-subtitle {
+  color: #888888;
+  font-size: 26rpx;
+  line-height: 1.6;
+  margin: 14rpx 0 28rpx;
+}
+
+.retry-btn {
+  margin-top: 18rpx;
+}
+
+.chart-preview {
+  padding: 34rpx 30rpx;
+  background: #8B9A8F;
+  color: #FFFFFF;
+  border-color: transparent;
+}
+
+.chart-title {
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 24rpx;
+  letter-spacing: 0;
+}
+
+.chart-name {
+  font-size: 38rpx;
+  font-weight: 700;
+  margin-top: 8rpx;
+}
+
+.chart-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14rpx;
   margin-top: 28rpx;
 }
 
-.chart-grid {
-  margin-top: 12rpx;
+.chart-stat {
+  padding: 18rpx 10rpx;
+  border-radius: 16rpx;
+  background: rgba(255, 255, 255, 0.16);
+  text-align: center;
 }
 
-.palace {
-  min-height: 124rpx;
-  padding: 14rpx 8rpx;
-  border-radius: 22rpx;
-  background: #faf7f3;
-  border: 2rpx solid #ece9e4;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+.stat-value {
+  font-size: 30rpx;
+  font-weight: 700;
 }
 
-.palace-main {
-  background: linear-gradient(135deg, #7d9d9c, #6a8584);
-  border-color: #7d9d9c;
-}
-
-.palace-name {
+.stat-label {
   font-size: 22rpx;
-  color: #8c8c8c;
+  opacity: 0.75;
+  margin-top: 6rpx;
 }
 
-.palace-star {
-  margin-top: 8rpx;
-  font-size: 26rpx;
-  font-weight: 600;
-  color: #4a4a4a;
-}
-
-.palace-main .palace-name,
-.palace-star-main {
-  color: #ffffff;
-}
-
-.detail-card {
+.analysis-section {
+  padding: 30rpx;
   margin-top: 24rpx;
 }
 
-.detail-row {
+.summary-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 18rpx;
+  margin-top: 24rpx;
+}
+
+.summary-item {
+  padding: 20rpx;
+  border-radius: 16rpx;
+  background: #F5F3F0;
+}
+
+.summary-key {
+  display: block;
+  color: #888888;
+  font-size: 22rpx;
+}
+
+.summary-value {
+  display: block;
+  color: #3D3D3D;
+  font-size: 26rpx;
+  font-weight: 700;
+  margin-top: 8rpx;
+}
+
+.palace-list {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  gap: 18rpx;
+  margin-top: 24rpx;
+}
+
+.palace-item {
+  padding: 22rpx;
+  border-radius: 16rpx;
+  background: #F5F3F0;
+}
+
+.palace-name {
+  color: #3D3D3D;
+  font-size: 28rpx;
+  font-weight: 700;
+}
+
+.palace-tags {
+  display: inline-block;
+  margin-top: 8rpx;
+  padding: 4rpx 12rpx;
+  border-radius: 999rpx;
+  background: rgba(196, 163, 112, 0.18);
+  color: #9C6B22;
+  font-size: 20rpx;
+}
+
+.palace-stars {
+  color: #5F5F5F;
+  font-size: 24rpx;
+  line-height: 1.55;
+  margin-top: 12rpx;
+}
+
+.muted-line {
+  color: #888888;
+  margin-top: 4rpx;
+}
+
+.period-list {
+  margin-top: 22rpx;
+}
+
+.period-list.yearly {
+  margin-top: 12rpx;
+}
+
+.period-item {
+  display: flex;
   justify-content: space-between;
   gap: 20rpx;
-  padding: 24rpx 0;
-  border-bottom: 2rpx solid #f0efec;
+  padding: 18rpx 0;
+  border-bottom: 1rpx solid #E8E3D8;
+  font-size: 24rpx;
+  line-height: 1.5;
 }
 
-.detail-row:last-child {
-  border-bottom: none;
+.period-item:last-child {
+  border-bottom: 0;
 }
 
-.detail-title {
-  font-size: 30rpx;
-  font-weight: 600;
-  color: #4a4a4a;
-}
-
-.detail-summary {
-  margin-top: 10rpx;
-  color: #7d9d9c;
-  line-height: 1.7;
-  font-size: 26rpx;
-}
-
-.detail-mark {
-  width: 60rpx;
-  height: 60rpx;
-  border-radius: 18rpx;
-  background: #f5f3f0;
-  color: #7d9d9c;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.period-key {
+  color: #C4A370;
   font-weight: 700;
+  min-width: 120rpx;
+}
+
+.period-value {
+  flex: 1;
+  color: #5F5F5F;
+  text-align: right;
+}
+
+.qa-btn {
+  margin-top: 28rpx;
 }

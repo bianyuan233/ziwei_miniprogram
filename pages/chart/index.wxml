@@ -1,24 +1,115 @@
-<view class="page page-with-tabbar chart-page">
-  <view class="title">我的命盘</view>
-  <view class="subtitle">紫微斗数十二宫详解，结合原型中的主宫位与辅助星曜展示。</view>
-
-  <view class="card chart-card">
-    <view class="grid-4 chart-grid">
-      <view wx:for="{{palaces}}" wx:key="name" class="palace {{item.main ? 'palace-main' : ''}}">
-        <text class="palace-name">{{item.name}}</text>
-        <text class="palace-star {{item.main ? 'palace-star-main' : ''}}">{{item.star}}</text>
-      </view>
+<view class="page chart-page screen-page">
+  <view class="app-header">
+    <view class="back-btn" hover-class="control-hover" bindtap="goBack">←</view>
+    <view class="header-main">
+      <view class="header-title">命盘分析</view>
+      <view class="header-subtitle">{{profile.name}} · {{profile.birthDate}}</view>
+    </view>
+    <view class="header-icons">
+      <button class="icon-btn" hover-class="control-hover" open-type="share">↗</button>
+      <view class="icon-btn" hover-class="control-hover" bindtap="showTimelineTip">◎</view>
     </view>
   </view>
 
-  <view class="card detail-card">
-    <view class="section-title">宫位详解</view>
-    <view wx:for="{{details}}" wx:key="palace" class="detail-row">
-      <view>
-        <view class="detail-title">{{item.palace}}（{{item.star}}）</view>
-        <view class="detail-summary">{{item.summary}}</view>
-      </view>
-      <view class="detail-mark">详</view>
+  <view wx:if="{{pageState === 'loading'}}" class="state-card card">
+    <view class="state-title">正在推算命盘</view>
+    <view class="state-subtitle">正在调用后端 /api/aiData 解析八字信息</view>
+    <view class="loading-dots">
+      <view class="loading-dot"></view>
+      <view class="loading-dot"></view>
+      <view class="loading-dot"></view>
     </view>
   </view>
+
+  <view wx:if="{{pageState === 'error'}}" class="state-card card">
+    <view class="state-title">命盘加载失败</view>
+    <view class="state-subtitle">{{errorMessage}}</view>
+    <button class="btn-primary retry-btn" hover-class="control-hover" bindtap="retry">重新请求</button>
+  </view>
+
+  <block wx:if="{{pageState === 'ready' && summary}}">
+    <view class="chart-preview card">
+      <view class="chart-title">命盘分析</view>
+      <view class="chart-name">{{profile.name}}的命盘</view>
+      <view class="chart-stats">
+        <view wx:for="{{pillars}}" wx:key="label" class="chart-stat">
+          <view class="stat-value">{{item.value}}</view>
+          <view class="stat-label">{{item.label}}</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="analysis-section card">
+      <view class="section-title">核心摘要</view>
+      <view class="summary-grid">
+        <view class="summary-item">
+          <text class="summary-key">命主</text>
+          <text class="summary-value">{{summary.soul}}</text>
+        </view>
+        <view class="summary-item">
+          <text class="summary-key">身主</text>
+          <text class="summary-value">{{summary.body}}</text>
+        </view>
+        <view class="summary-item">
+          <text class="summary-key">五行局</text>
+          <text class="summary-value">{{summary.fiveElementsClass}}</text>
+        </view>
+        <view class="summary-item">
+          <text class="summary-key">生肖</text>
+          <text class="summary-value">{{summary.zodiac}}</text>
+        </view>
+        <view class="summary-item">
+          <text class="summary-key">星座</text>
+          <text class="summary-value">{{summary.sign}}</text>
+        </view>
+        <view class="summary-item">
+          <text class="summary-key">阴历</text>
+          <text class="summary-value">{{summary.lunarDate}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="analysis-section card">
+      <view class="section-title">十二宫位</view>
+      <view class="palace-list">
+        <view wx:for="{{palaces}}" wx:key="index" class="palace-item">
+          <view class="palace-head">
+            <view>
+              <view class="palace-name">{{item.name}} · {{item.branch}}</view>
+              <view wx:if="{{item.tags}}" class="palace-tags">{{item.tags}}</view>
+            </view>
+          </view>
+          <view class="palace-stars">主星：{{item.mainStars}}</view>
+          <view class="palace-stars muted-line">辅星：{{item.minorStars}}</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="analysis-section card">
+      <view class="section-title">大限与流年</view>
+      <view class="period-list">
+        <view wx:for="{{majorPeriodItems}}" wx:key="rangeText" class="period-item">
+          <text class="period-key">{{item.rangeText}}</text>
+          <text class="period-value">{{item.palaceText}}</text>
+        </view>
+      </view>
+      <view class="period-list yearly">
+        <view wx:for="{{yearlyPeriodItems}}" wx:key="ageText" class="period-item">
+          <text class="period-key">{{item.ageText}}</text>
+          <text class="period-value">{{item.palaceText}}</text>
+        </view>
+      </view>
+    </view>
+
+    <button class="btn-primary qa-btn" hover-class="control-hover" bindtap="goToQA">💬 深度问答解析</button>
+  </block>
+
+  <app-modal
+    visible="{{modal.visible}}"
+    icon="{{modal.icon}}"
+    title="{{modal.title}}"
+    message="{{modal.message}}"
+    buttons="{{modal.buttons}}"
+    bindaction="onModalAction"
+  />
 </view>

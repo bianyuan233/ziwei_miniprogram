@@ -1,39 +1,24 @@
 {
   "pages": [
-    "pages/welcome/index",
-    "pages/verify/index",
-    "pages/result/index",
+    "pages/register/index",
+    "pages/calibration/index",
     "pages/home/index",
     "pages/chart/index",
-    "pages/profile/index",
-    "pages/api-result/index"
+    "pages/qa/index",
+    "pages/account/index",
+    "pages/pricing/index",
+    "pages/policy/index"
   ],
   "window": {
-    "navigationBarTitleText": "顺顺念",
+    "navigationStyle": "custom",
+    "navigationBarTitleText": "顺顺尼",
     "navigationBarBackgroundColor": "#F5F3F0",
     "navigationBarTextStyle": "black",
     "backgroundColor": "#F5F3F0",
     "backgroundTextStyle": "light"
   },
-  "tabBar": {
-    "color": "#8C8C8C",
-    "selectedColor": "#7D9D9C",
-    "backgroundColor": "#FFFFFF",
-    "borderStyle": "black",
-    "list": [
-      {
-        "pagePath": "pages/home/index",
-        "text": "首页"
-      },
-      {
-        "pagePath": "pages/chart/index",
-        "text": "命盘"
-      },
-      {
-        "pagePath": "pages/profile/index",
-        "text": "我的"
-      }
-    ]
+  "usingComponents": {
+    "app-modal": "/components/modal/index"
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json"

@@ -1,0 +1,42 @@
+<view class="page pricing-page screen-page">
+  <view class="app-header">
+    <view class="back-btn" hover-class="control-hover" bindtap="goBack">←</view>
+    <view class="header-main">
+      <view class="header-title">升级服务</view>
+      <view class="header-subtitle">解锁更多深度洞察与长期分析</view>
+    </view>
+  </view>
+
+  <view class="pricing-options">
+    <view
+      wx:for="{{plans}}"
+      wx:key="key"
+      class="pricing-card card {{item.highlighted ? 'highlighted' : ''}} {{selectedPlan === item.key ? 'selected' : ''}}"
+      hover-class="control-hover"
+      data-key="{{item.key}}"
+      bindtap="selectPlan"
+    >
+      <view class="pricing-title">
+        <text>{{item.title}}</text>
+        <text wx:if="{{item.badge}}" class="pricing-badge">{{item.badge}}</text>
+      </view>
+      <view class="pricing-price">{{item.price}}</view>
+      <view class="pricing-period">{{item.period}}</view>
+      <view class="pricing-features">
+        <view wx:for="{{item.features}}" wx:for-item="feature" wx:key="*this" class="pricing-feature">✓ {{feature}}</view>
+      </view>
+    </view>
+  </view>
+
+  <button class="btn-primary pay-btn" hover-class="control-hover" bindtap="processPay">立即充值</button>
+  <button class="btn-secondary later-btn" hover-class="control-hover" bindtap="goBack">暂不升级</button>
+
+  <app-modal
+    visible="{{modal.visible}}"
+    icon="{{modal.icon}}"
+    title="{{modal.title}}"
+    message="{{modal.message}}"
+    buttons="{{modal.buttons}}"
+    bindaction="onModalAction"
+  />
+</view>

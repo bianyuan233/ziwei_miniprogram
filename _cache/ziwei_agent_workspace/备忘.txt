@@ -1,0 +1,2 @@
+/home/ubuntu/ziwei_agent/env/ziwei/bin/python /home/ubuntu/ziwei_agent/workspace/app.py
+/home/ubuntu/ziwei_agent/env/ziwei/bin/python /home/ubuntu/ziwei_agent/workspace/client.py

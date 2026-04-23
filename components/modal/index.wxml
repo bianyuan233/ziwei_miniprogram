@@ -1,0 +1,16 @@
+<view wx:if="{{visible}}" class="modal-overlay" catchtap="noop">
+  <view class="modal" catchtap="noop">
+    <view wx:if="{{icon}}" class="modal-icon">{{icon}}</view>
+    <view class="modal-title">{{title}}</view>
+    <view wx:if="{{message}}" class="modal-message">{{message}}</view>
+    <view class="modal-buttons">
+      <button
+        wx:for="{{buttons}}"
+        wx:key="action"
+        class="modal-btn {{item.primary ? 'primary' : ''}}"
+        data-action="{{item.action}}"
+        bindtap="handleAction"
+      >{{item.text}}</button>
+    </view>
+  </view>
+</view>

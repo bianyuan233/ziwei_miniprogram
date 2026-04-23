@@ -1,0 +1,86 @@
+<view class="page qa-page screen-page">
+  <view class="app-header">
+    <view class="back-btn" hover-class="control-hover" bindtap="goBack">←</view>
+    <view class="header-main">
+      <view class="header-title">命理问答</view>
+      <view class="header-subtitle">{{profile.name}} · {{profile.birthDate}}</view>
+    </view>
+    <view class="header-icons">
+      <button class="icon-btn" hover-class="control-hover" open-type="share">↗</button>
+      <view class="icon-btn" hover-class="control-hover" bindtap="goToAccount">👤</view>
+      <view class="icon-btn" hover-class="control-hover" bindtap="goToPricing">💳</view>
+    </view>
+  </view>
+
+  <view wx:if="{{pageState === 'loadingChart'}}" class="state-card card">
+    <view class="state-title">正在准备命盘</view>
+    <view class="state-subtitle">问答前会先调用 /api/aiData 确认命盘数据</view>
+    <view class="loading-dots">
+      <view class="loading-dot"></view>
+      <view class="loading-dot"></view>
+      <view class="loading-dot"></view>
+    </view>
+  </view>
+
+  <view wx:if="{{pageState === 'error'}}" class="state-card card">
+    <view class="state-title">命盘准备失败</view>
+    <view class="state-subtitle">{{errorMessage}}</view>
+    <button class="btn-primary retry-btn" hover-class="control-hover" bindtap="retryChart">重新准备</button>
+  </view>
+
+  <block wx:if="{{pageState === 'ready' || pageState === 'streaming'}}">
+    <view class="qa-header-card card">
+      <view class="qa-header-subtitle">{{profile.name}} | {{profile.birthDate}}</view>
+      <view class="qa-header-name">命理问答</view>
+      <view class="qa-header-meta">校准准确度 {{profile.accuracy}}% · 命盘状态良好</view>
+    </view>
+
+    <view wx:if="{{errorMessage}}" class="error-banner" bindtap="dismissError">
+      <text>{{errorMessage}}</text>
+      <text>×</text>
+    </view>
+
+    <scroll-view class="messages-container" scroll-y scroll-with-animation>
+      <view wx:for="{{messages}}" wx:key="id" class="message {{item.role}}">
+        <view class="message-bubble">
+          <rich-text wx:if="{{item.role === 'assistant' && item.content && item.renderMode === 'markdown'}}" nodes="{{item.nodes}}"></rich-text>
+          <text wx:elif="{{item.content}}">{{item.content}}</text>
+          <view wx:if="{{item.streaming && !item.content}}" class="typing-indicator">
+            <view class="typing-dot"></view>
+            <view class="typing-dot"></view>
+            <view class="typing-dot"></view>
+          </view>
+          <view wx:if="{{item.streaming && !item.content && item.statusText}}" class="stream-status">{{item.statusText}}</view>
+          <view wx:if="{{item.streaming && !item.content && item.waitingSeconds > 0}}" class="stream-elapsed">已等待 {{item.waitingSeconds}}s</view>
+          <text wx:if="{{item.streaming && item.content}}" class="cursor">▌</text>
+          <view wx:if="{{item.streaming}}" class="stop-stream-btn" hover-class="control-hover" bindtap="stopStream">停止生成</view>
+        </view>
+      </view>
+    </scroll-view>
+
+    <view class="input-area">
+      <input
+        class="input-field"
+        placeholder="继续提问..."
+        value="{{inputText}}"
+        disabled="{{inputDisabled}}"
+        bindinput="handleInput"
+        bindconfirm="onSend"
+        confirm-type="send"
+        maxlength="300"
+      />
+      <button class="send-btn {{inputDisabled ? 'disabled' : ''}}" hover-class="control-hover" disabled="{{inputDisabled}}" bindtap="onSend">→</button>
+    </view>
+
+    <view class="privacy-notice">本机不保存对话记录 · 服务端仅用于本次分析处理</view>
+  </block>
+
+  <app-modal
+    visible="{{modal.visible}}"
+    icon="{{modal.icon}}"
+    title="{{modal.title}}"
+    message="{{modal.message}}"
+    buttons="{{modal.buttons}}"
+    bindaction="onModalAction"
+  />
+</view>

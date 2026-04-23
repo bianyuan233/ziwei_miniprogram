@@ -1,108 +1,186 @@
-const KEYS = {
-  PROFILE: "ssn_profile",
-  VERIFIED: "ssn_verified",
-  PAID: "ssn_paid",
-  HISTORY: "ssn_history",
+const STATE_KEY = "ssn_app_state_v2";
+
+const DEFAULT_STATE = {
+  currentUser: null,
+  profiles: [],
+  selectedProfileId: "",
+  subscription: {
+    plan: null,
+    purchaseDate: null,
+    expiryDate: null,
+  },
+  paymentHistory: [],
+  qaCount: 0,
 };
 
+function clone(value) {
+  return JSON.parse(JSON.stringify(value));
+}
+
+function createDefaultState() {
+  return clone(DEFAULT_STATE);
+}
+
+function getState() {
+  const stored = wx.getStorageSync(STATE_KEY);
+  if (!stored || typeof stored !== "object") {
+    return createDefaultState();
+  }
+
+  return Object.assign(createDefaultState(), stored, {
+    subscription: Object.assign({}, DEFAULT_STATE.subscription, stored.subscription || {}),
+    paymentHistory: Array.isArray(stored.paymentHistory) ? stored.paymentHistory : [],
+    profiles: Array.isArray(stored.profiles) ? stored.profiles : [],
+    qaCount: Number(stored.qaCount || 0),
+  });
+}
+
+function saveState(nextState) {
+  wx.setStorageSync(STATE_KEY, Object.assign(createDefaultState(), nextState));
+}
+
 function initAppState() {
-  if (!wx.getStorageSync(KEYS.PROFILE)) {
-    wx.setStorageSync(KEYS.PROFILE, {
-      nickname: "有缘人",
-      avatarText: "顺",
-      memberType: "普通会员",
-      memberExpireAt: "2026-12-31",
-      userId: "889203",
-      gender: "男",
-      profession: "互联网/软件",
-      birthDate: "",
-      birthHour: 12,
-      shichen: "午时",
-    });
+  const existing = wx.getStorageSync(STATE_KEY);
+  if (!existing) {
+    saveState(createDefaultState());
   }
+}
 
-  const profile = wx.getStorageSync(KEYS.PROFILE) || {};
-  wx.setStorageSync(KEYS.PROFILE, {
-    nickname: "有缘人",
-    avatarText: "顺",
-    memberType: "普通会员",
-    memberExpireAt: "2026-12-31",
-    userId: "889203",
+function genId(prefix) {
+  return `${prefix}_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
+}
+
+function getCurrentUser() {
+  return getState().currentUser;
+}
+
+function saveCurrentUser(user) {
+  const state = getState();
+  state.currentUser = Object.assign({}, state.currentUser || {}, user);
+  saveState(state);
+  return state.currentUser;
+}
+
+function isRegistered() {
+  return !!getState().currentUser;
+}
+
+function getProfiles() {
+  return getState().profiles;
+}
+
+function getSelectedProfileId() {
+  return getState().selectedProfileId;
+}
+
+function setSelectedProfile(profileId) {
+  const state = getState();
+  state.selectedProfileId = profileId;
+  saveState(state);
+}
+
+function getSelectedProfile() {
+  const state = getState();
+  if (!state.profiles.length) return null;
+  const selected = state.profiles.find(item => item.id === state.selectedProfileId);
+  return selected || state.profiles[0];
+}
+
+function addProfile(profile) {
+  const state = getState();
+  const nextProfile = Object.assign({
+    id: genId("profile"),
+    name: "本人",
     gender: "男",
-    profession: "互联网/软件",
     birthDate: "",
-    birthHour: 12,
-    shichen: "午时",
-    ...profile,
+    timeIndex: 6,
+    timeLabel: "午时 (11:00-13:00)",
+    profession: "",
+    calibrationStatus: "pending",
+    accuracy: 0,
+    chartKey: "",
+    chartData: null,
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  }, profile);
+
+  state.profiles = [nextProfile].concat(state.profiles);
+  state.selectedProfileId = nextProfile.id;
+  saveState(state);
+  return nextProfile;
+}
+
+function updateProfile(profileId, patch) {
+  const state = getState();
+  state.profiles = state.profiles.map(profile => {
+    if (profile.id !== profileId) return profile;
+    return Object.assign({}, profile, patch, { updatedAt: new Date().toISOString() });
   });
-
-  if (wx.getStorageSync(KEYS.VERIFIED) === "") {
-    wx.setStorageSync(KEYS.VERIFIED, false);
-  }
-
-  if (wx.getStorageSync(KEYS.PAID) === "") {
-    wx.setStorageSync(KEYS.PAID, false);
-  }
-
-  if (!wx.getStorageSync(KEYS.HISTORY)) {
-    wx.setStorageSync(KEYS.HISTORY, []);
-  }
+  saveState(state);
+  return state.profiles.find(profile => profile.id === profileId) || null;
 }
 
-function getProfile() {
-  return wx.getStorageSync(KEYS.PROFILE);
+function saveChartForProfile(profileId, chartData, chartKey) {
+  return updateProfile(profileId, { chartData, chartKey });
 }
 
-function saveProfile(profile) {
-  wx.setStorageSync(KEYS.PROFILE, {
-    ...getProfile(),
-    ...profile,
-  });
+function getSubscription() {
+  return getState().subscription;
 }
 
-function isVerified() {
-  return !!wx.getStorageSync(KEYS.VERIFIED);
+function setSubscription(subscription) {
+  const state = getState();
+  state.subscription = Object.assign({}, DEFAULT_STATE.subscription, subscription);
+  saveState(state);
 }
 
-function setVerified(value) {
-  wx.setStorageSync(KEYS.VERIFIED, !!value);
+function getPaymentHistory() {
+  return getState().paymentHistory;
 }
 
-function isPaid() {
-  return !!wx.getStorageSync(KEYS.PAID);
+function addPaymentRecord(record) {
+  const state = getState();
+  state.paymentHistory = [record].concat(state.paymentHistory || []).slice(0, 30);
+  saveState(state);
 }
 
-function setPaid(value) {
-  wx.setStorageSync(KEYS.PAID, !!value);
+function getQaCount() {
+  return getState().qaCount;
 }
 
-function getHistory() {
-  return wx.getStorageSync(KEYS.HISTORY) || [];
-}
-
-function appendHistory(record) {
-  const history = getHistory();
-  wx.setStorageSync(KEYS.HISTORY, [record, ...history].slice(0, 20));
+function incrementQaCount() {
+  const state = getState();
+  state.qaCount = Number(state.qaCount || 0) + 1;
+  saveState(state);
+  return state.qaCount;
 }
 
 function clearAll() {
-  wx.removeStorageSync(KEYS.PROFILE);
-  wx.removeStorageSync(KEYS.VERIFIED);
-  wx.removeStorageSync(KEYS.PAID);
-  wx.removeStorageSync(KEYS.HISTORY);
+  wx.removeStorageSync(STATE_KEY);
   initAppState();
 }
 
 module.exports = {
-  KEYS,
+  STATE_KEY,
   initAppState,
-  getProfile,
-  saveProfile,
-  isVerified,
-  setVerified,
-  isPaid,
-  setPaid,
-  getHistory,
-  appendHistory,
+  genId,
+  getState,
+  saveState,
+  getCurrentUser,
+  saveCurrentUser,
+  isRegistered,
+  getProfiles,
+  getSelectedProfileId,
+  setSelectedProfile,
+  getSelectedProfile,
+  addProfile,
+  updateProfile,
+  saveChartForProfile,
+  getSubscription,
+  setSubscription,
+  getPaymentHistory,
+  addPaymentRecord,
+  getQaCount,
+  incrementQaCount,
   clearAll,
 };

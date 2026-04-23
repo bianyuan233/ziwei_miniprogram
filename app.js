@@ -3,8 +3,9 @@ const storage = require("./utils/storage");
 App({
   globalData: {
     theme: {
-      primary: "#7D9D9C",
-      accent: "#D4A59A",
+      primary: "#8B9A8F",
+      secondary: "#9B8FA9",
+      accent: "#C4A370",
     },
   },
 

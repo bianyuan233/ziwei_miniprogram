@@ -1,0 +1,53 @@
+<view class="page policy-page screen-page">
+  <view class="app-header">
+    <view class="back-btn" hover-class="control-hover" bindtap="goBack">←</view>
+    <view class="header-main">
+      <view class="header-title">用户协议</view>
+      <view class="header-subtitle">服务说明与隐私政策</view>
+    </view>
+  </view>
+
+  <view class="policy-content card">
+    <view class="policy-section">
+      <view class="policy-title">用户服务协议</view>
+      <view class="policy-text">欢迎使用命理咨询服务。本服务提供基于传统命理资料的分析和问答，结果仅供参考，不构成投资、医疗、法律或其他专业决策建议。</view>
+    </view>
+
+    <view class="policy-section">
+      <view class="policy-subtitle">1. 服务内容</view>
+      <view class="policy-text">本应用提供命盘分析、命理问答、会员权益展示和本地档案管理。当前会员充值为本地模拟，不接入真实支付。</view>
+    </view>
+
+    <view class="policy-section">
+      <view class="policy-subtitle">2. 用户责任</view>
+      <view class="policy-text">你应尽量提供真实、准确的出生日期、出生时辰和性别信息。因信息不准确导致的分析偏差，由用户自行判断。</view>
+    </view>
+
+    <view class="policy-section">
+      <view class="policy-subtitle">3. 风险声明</view>
+      <view class="policy-text">命理分析具有文化和娱乐属性，请理性看待。涉及财务、医疗、法律、婚姻等重大事项，应咨询对应专业人士。</view>
+    </view>
+
+    <view class="policy-section">
+      <view class="policy-title">隐私政策</view>
+      <view class="policy-text">本机保存注册信息、命盘档案、会员模拟状态和本机问答统计。问答页不在本机保存完整对话记录。</view>
+    </view>
+
+    <view class="policy-section">
+      <view class="policy-subtitle">1. 信息使用</view>
+      <view class="policy-text">当你查看命盘时，小程序会调用后端 /api/aiData 生成命盘。当你发送问答时，小程序会调用 /api/agent/stream，服务端会使用命盘和问题完成本次分析处理。</view>
+    </view>
+
+    <view class="policy-section">
+      <view class="policy-subtitle">2. 信息保护</view>
+      <view class="policy-text">我们不会在前端代码中写入服务器密码或敏感凭据。当前版本不接入真实手机号授权、真实支付或服务端档案管理。</view>
+    </view>
+
+    <view class="policy-section last">
+      <view class="policy-subtitle">联系我们</view>
+      <view class="policy-text">如需反馈问题，可在账户页进入客服中心提交反馈或复制客服微信。</view>
+    </view>
+  </view>
+
+  <button class="btn-primary back-bottom" hover-class="control-hover" bindtap="goBack">返回</button>
+</view>

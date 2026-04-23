@@ -1,0 +1,39 @@
+.policy-content {
+  padding: 34rpx 30rpx;
+}
+
+.policy-section {
+  padding-bottom: 28rpx;
+  margin-bottom: 28rpx;
+  border-bottom: 1rpx solid #E8E3D8;
+}
+
+.policy-section.last {
+  border-bottom: 0;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.policy-title {
+  color: #8B9A8F;
+  font-size: 34rpx;
+  font-weight: 700;
+  margin-bottom: 14rpx;
+}
+
+.policy-subtitle {
+  color: #3D3D3D;
+  font-size: 29rpx;
+  font-weight: 700;
+  margin-bottom: 12rpx;
+}
+
+.policy-text {
+  color: #666666;
+  font-size: 26rpx;
+  line-height: 1.75;
+}
+
+.back-bottom {
+  margin-top: 28rpx;
+}

@@ -1,0 +1,64 @@
+.calibration-page {
+  min-height: 100vh;
+}
+
+.progress-bar {
+  height: 12rpx;
+  border-radius: 999rpx;
+  background: #E8E3D8;
+  overflow: hidden;
+  margin-bottom: 38rpx;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 999rpx;
+  background: #8B9A8F;
+  transition: width 0.2s ease;
+}
+
+.question-wrap {
+  padding-top: 18rpx;
+}
+
+.question-number {
+  color: #C4A370;
+  font-size: 24rpx;
+  font-weight: 700;
+  margin-bottom: 18rpx;
+}
+
+.question-text {
+  color: #3D3D3D;
+  font-size: 40rpx;
+  font-weight: 700;
+  line-height: 1.45;
+  margin-bottom: 36rpx;
+}
+
+.options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 22rpx;
+}
+
+.flex-spacer {
+  flex: 1;
+  min-height: 72rpx;
+}
+
+.button-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 20rpx;
+}
+
+.button-row .btn-primary,
+.button-row .btn-secondary {
+  padding-left: 16rpx;
+  padding-right: 16rpx;
+}
+
+.disabled {
+  opacity: 0.45;
+}
